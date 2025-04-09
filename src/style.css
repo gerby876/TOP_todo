@@ -1,0 +1,87 @@
+body{
+    margin: 0px;
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 7em auto;
+    background-color: #cad5df;
+}
+
+.top{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    min-height: 100%;
+    font-size: 5em;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    background-color: #709ab3;
+}
+
+.test{
+    display: flex;
+}
+
+#keyb{
+    align-self: center;
+    border: solid;
+    margin-right: .5em;
+    border-width: 1px;
+    height: .75em;
+    width: .75em;
+}
+
+
+.key{
+    font-size: .25em;
+    font-weight: 100;
+    justify-self: center;
+}
+
+.title{
+    grid-column-start: 2;
+    grid-column-end: 5;
+    justify-self: center;
+}
+
+.addp{
+    height: 3em;
+    width: 10em;
+    border-radius: 4px;
+    background-color: inherit;
+   
+}
+
+.addp:hover{
+    cursor: pointer;
+}
+
+.holder{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 28em);
+    grid-template-rows: repeat(auto-fill, 25em);
+    gap: 0px;
+    overflow: wrap;
+    justify-content: center;
+    margin: 2em;
+}
+
+#project{
+    border: solid;
+    height: 22em;
+    width: 24em;
+    border-radius: 6px;
+    justify-self: center;
+}
+
+.low{
+    background-color: #e5e6e4;
+}
+
+.mid{
+    background-color: #dfd9c7;
+}
+
+.high{
+    background-color: #8fa7bb;
+}
