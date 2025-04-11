@@ -52,7 +52,7 @@ body{
    
 }
 
-.addp:hover{
+button:hover{
     cursor: pointer;
 }
 

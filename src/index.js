@@ -1,12 +1,6 @@
 import "./style.css"
+import {addproject, closeout, submitproject} from "./buttons.js"
 
-const addproject = (function() {
-    const dialog = document.querySelector("dialog");
-    dialog.showModal();
-});
+const myProjects = []
 
-const button = document.querySelector(".addp");
-
-button.addEventListener("click", () => {
-    addproject();
-});
+export {myProjects}
