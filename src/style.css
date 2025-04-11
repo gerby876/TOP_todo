@@ -77,9 +77,9 @@ button:hover{
     overflow-wrap: break-word;
 }
 
-.test{
+/* .test{
     height: 18px;
-}
+} */
 
 .low{
     background-color: #e5e6e4;
@@ -115,13 +115,13 @@ button:hover{
     margin-right: 1em;
 }
 
-#test{
-    padding-top: 1em;
-    padding-bottom: 1em;
+#tasks{
+    padding-top: .4em;
+    padding-bottom: .4em;
+    font-size: 1.25em;
     margin: 0px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    align-content: center;
     justify-items: center;
 }
 
@@ -137,4 +137,34 @@ button:hover{
 .task{
     grid-column-start: 2;
     grid-column-end: 5;
+    align-self: center;
+}
+
+.taskdate{
+    align-self: center;
+}
+
+.taskb{
+    display: flex;
+    justify-content: space-around;
+}
+
+.addt{
+    height: 3em;
+    width: 8em;
+    border-radius: 4px;
+    background-color: inherit;
+}
+
+.tasksb{
+    height: 2.75em;
+    width: 8em;
+    border-radius: 4px;
+    background-color: inherit;
+}
+
+.taskbuttons{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
 }

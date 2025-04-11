@@ -60,16 +60,24 @@ const firstLoad = (function() {
     holder.classList.add("holder");
     body.appendChild(holder);
 
-    const next = new project("Test Project 1", "Test project description", "1995-08-31", "low");
-    myProjects.push(next);
+    // const next = new project("Test Project 1", "Test project description", "1995-08-31", "low");
+    // myProjects.push(next);
 
-    const next1 = new project("Test Project 1", "Test project description", "1995-08-31", "mid");
-    myProjects.push(next1);
+    // const next1 = new project("Test Project 1", "Test project description", "1995-08-31", "mid");
+    // myProjects.push(next1);
 
     projectLoop();
     buttonClick();
 
-});
+})();
+
+const next = new project("Test Project 1", "Test project description", "1995-08-31", "low");
+myProjects.push(next);
+
+const next1 = new project("Test Project 1", "Test project description", "1995-08-31", "mid");
+myProjects.push(next1);
+
+console.log(myProjects[1].tasks)
 
 const projectsPage = (function() {
     projectLoop();
