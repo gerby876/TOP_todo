@@ -1,5 +1,6 @@
 import {project} from "./constructors.js"
 import {myProjects} from "./index.js";
+import {createCard} from "./projectvisual.js";
 
 const button = document.querySelector(".addp");
 const close = document.querySelector(".close");
@@ -19,12 +20,9 @@ const closeout = (function() {
 
 const submitproject = (function() {
     const projectform = document.getElementById("projectform");
-    const title = document.getElementById("projecttitle");
-    const description = document.getElementById("projectdesc");
-    const projectdue = document.getElementById("projectdue");
-    const projectprio = document.getElementById("projectprio");
-    const next = new project(title.value, description.value, projectdue.value, projectprio.value);
+    const next = new project(document.getElementById("projecttitle").value, document.getElementById("projectdesc").value, document.getElementById("projectdue").value, document.getElementById("projectprio").value);
     myProjects.push(next);
+    createCard(next);
     console.log(myProjects);
     projectform.reset();
     
