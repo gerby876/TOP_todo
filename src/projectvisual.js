@@ -1,10 +1,9 @@
+import { myProjects } from "./index.js";
+
 const createCard = (function (next) {
     const holder = document.querySelector(".holder");
 
     const card = document.createElement("div");
-
-    console.log(next.priority)
-    console.log(typeof(next.priority))
 
     card.setAttribute("id", "project");
         if (next.priority == "low") {
@@ -16,13 +15,40 @@ const createCard = (function (next) {
         }
 
     
-        holder.appendChild(card);
+    holder.appendChild(card);
 
+    card.addEventListener("click", () => {
+        enlargeCard()
+    });
 
     const title = document.createElement("div");
     title.classList.add("title");
     title.textContent = next.title;
     card.appendChild(title);
+
+    const date = document.createElement("div");
+    date.classList.add("date");
+    const datetext = document.createElement("div");
+    datetext.textContent = "Due Date:"
+    const dateday = document.createElement("div");
+    dateday.textContent = next.dueDate;
+    date.appendChild(datetext);
+    date.appendChild(dateday);
+    title.appendChild(date);
+
 });
 
-export {createCard}
+const projectLoop = (function() {
+    for (let i=0; i<myProjects.length; i++) {
+        createCard(myProjects[i]);
+    }
+});
+
+
+
+
+const enlargeCard = (function() {
+    console.log(1);
+});
+
+export {createCard, projectLoop}

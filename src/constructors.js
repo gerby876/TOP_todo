@@ -7,3 +7,4 @@ class project { constructor(title, description, dueDate, priority) {
 }};
 
 export {project}
+
