@@ -1,6 +1,6 @@
-import {project} from "./constructors.js"
+import {project, task} from "./constructors.js"
 import {myProjects} from "./index.js";
-import {createCard} from "./projectvisual.js";
+import {createCard, populateTasks} from "./projectvisual.js";
 
 const addproject = (function() {
     document.querySelector("dialog").showModal();
@@ -38,4 +38,15 @@ const buttonClick = (function() {
     });
 });
 
-export {buttonClick}
+const addTask = (function() {
+    const addt = document.getElementById("addt");
+    addt.addEventListener("click", () => {
+        const test = new task("test description", "xxxx-xx-xx", "mid");
+        myProjects[1].tasks.push(test);
+        console.log(myProjects[1].tasks);
+        populateTasks(myProjects[1].tasks.length)
+    });
+});
+
+
+export {buttonClick, addTask}

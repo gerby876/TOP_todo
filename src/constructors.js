@@ -3,9 +3,16 @@ class project { constructor(title, description, dueDate, priority) {
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
-    this.tasks = ["test", "test2"]
+    this.tasks = []
     this.id = crypto.randomUUID();
 }};
 
-export {project}
+class task { constructor(description, dueDate, priority) {
+    this.taskDes = description;
+    this.taskDue = dueDate;
+    this.taskPrio = priority;
+    this.taskId = crypto.randomUUID();
+}};
+
+export {project, task}
 
