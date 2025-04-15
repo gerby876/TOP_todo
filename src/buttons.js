@@ -1,9 +1,9 @@
 import {project, task} from "./constructors.js"
 import {myProjects} from "./index.js";
-import {createCard, populateTasks} from "./projectvisual.js";
+import {createCard, singleTask} from "./projectvisual.js";
 
 const addproject = (function() {
-    document.querySelector("dialog").showModal();
+    document.querySelector(".projectform").showModal();
 });
 
 const closeout = (function() {
@@ -19,10 +19,16 @@ const submitproject = (function() {
     
 });
 
+const closeoutTask = (function() {
+    document.getElementById("taskform").reset();
+    document.querySelector(".taskForm").close();
+});
+
 const buttonClick = (function() {
     const button = document.querySelector(".addp");
     const close = document.querySelector(".close");
     const submit = document.querySelector(".submit");
+    const closetask = document.querySelector(".closeTask")
 
     button.addEventListener("click", () => {
         addproject();
@@ -36,17 +42,30 @@ const buttonClick = (function() {
         submitproject();
         closeout();
     });
+
+    closetask.addEventListener("click", () => {
+        closeoutTask();
+    });
+    
 });
 
-const addTask = (function() {
+const addTask = (function(i) {
     const addt = document.getElementById("addt");
     addt.addEventListener("click", () => {
-        const test = new task("test description", "xxxx-xx-xx", "mid");
-        myProjects[1].tasks.push(test);
-        console.log(myProjects[1].tasks);
-        populateTasks(myProjects[1].tasks.length)
+        document.querySelector(".taskForm").showModal(i);
+    });
+    const submit = document.querySelector(".submitTask");
+    submit.addEventListener("click", () => {
+        submitTask(i)
     });
 });
 
+const submitTask = (function(i) {
+    const newTask = new task(document.getElementById("taskdesc").value, document.getElementById("taskdue").value, document.getElementById("taskprio").value);
+    myProjects[i].tasks.push(newTask);
+    singleTask(i);
+    closeoutTask();
+});
 
-export {buttonClick, addTask}
+
+export {buttonClick, addTask, submitTask}

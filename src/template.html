@@ -57,20 +57,36 @@
             </div>
         </div>
     </div> -->
-    <dialog>
+    <dialog class="projectform">
         <form id="projectform" onsubmit=event.preventDefault()>
-        <button class="close"> X </button>
-        <div>Title: <input id="projecttitle" type="text"></div>
-        <div>Description: <input id="projectdesc" type="text"></div>
-        <div>Due Date: <input id="projectdue" type="date"></div>
-        <div>Priority: 
-            <select id="projectprio">
-                <option value="low"> Low </option>
-                <option value="mid"> Medium </option>
-                <option value="high"> High </option>
-            </select>
-        </div>
-        <button class="submit">Submit</button>
+            <button class="close"> X </button>
+            <div>Title: <input id="projecttitle" type="text"></div>
+            <div>Description: <input id="projectdesc" type="text"></div>
+            <div>Due Date: <input id="projectdue" type="date"></div>
+            <div>Priority: 
+                <select id="projectprio">
+                    <option value="low"> Low </option>
+                    <option value="mid"> Medium </option>
+                    <option value="high"> High </option>
+                </select>
+            </div>
+            <button class="submit">Submit</button>
+        </form>
+    </dialog>
+
+    <dialog class="taskForm">
+        <form id="taskform" onsubmit=event.preventDefault()>
+            <button class="closeTask"> X </button>
+            <div>Description: <input id="taskdesc" type="text"></div>
+            <div>Due Date: <input id="taskdue" type="date"></div>
+            <div>Priority: 
+                <select id="taskprio">
+                    <option value="low"> Low </option>
+                    <option value="mid"> Medium </option>
+                    <option value="high"> High </option>
+                </select>
+            </div>
+            <button class="submitTask">Submit</button>
         </form>
     </dialog>
 </body>
