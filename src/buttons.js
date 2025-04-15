@@ -47,7 +47,17 @@ const buttonClick = (function() {
     
 });
 
-const submitTask = (function(i) {
+const submitTask = (function(i, id) {
+    for (let x=0; x<myProjects[i].tasks.length; x++) {
+        if (id === myProjects[i].tasks[x].taskId) {
+            console.log(2)
+        } else {
+            const newTask = new task(document.getElementById("taskdesc").value, document.getElementById("taskdue").value, document.getElementById("taskprio").value);
+            myProjects[i].tasks.push(newTask);
+            singleTask(i);
+            closeoutTask();
+        };
+    };
     const newTask = new task(document.getElementById("taskdesc").value, document.getElementById("taskdue").value, document.getElementById("taskprio").value);
     myProjects[i].tasks.push(newTask);
     singleTask(i);
@@ -66,11 +76,11 @@ const deleteb = (function(i) {
     goback()
 });
 
-const addTask = (function(i) {
-    document.querySelector(".taskForm").showModal(i);
+const addTask = (function() {
+    document.querySelector(".taskForm").showModal();
 });
 
-const taskButtons = (function(i) {
+const taskButtons = (function(i, id) {
     const backbutton = document.getElementById("back");
     backbutton.addEventListener("click", () => {
         goback();
@@ -83,14 +93,38 @@ const taskButtons = (function(i) {
 
     const addt = document.getElementById("addt");
     addt.addEventListener("click", () => {
-        addTask(i);
+        addTask();
     });
 
     const submit = document.querySelector(".submitTask");
-    submit.addEventListener("click", () =>
-        submitTask(i));
+    submit.addEventListener("click", () => {
+        console.log(1)
+        submitTask(i, id)});
     
 });
 
+const edittask = (function() {
+    
+});
 
-export {buttonClick, addproject, taskButtons}
+const individualtasks = (function(id) {
+    const edit =document.querySelector(".edit");
+    const complete = document.getElementById(id).getElementsByClassName("complete");
+    const deletet = document.getElementById(id).getElementsByClassName("delete");
+
+    edit.addEventListener("click", () => {
+        document.querySelector(".taskForm").showModal();
+        console.log(1)
+    });
+
+    // complete.addEventListener("click", () => {
+
+    // });
+
+    // deletet.addEventListener("click", () => {
+
+    // });
+});
+
+
+export {buttonClick, addproject, taskButtons, individualtasks}

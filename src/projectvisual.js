@@ -1,5 +1,5 @@
 import { myProjects } from "./index.js";
-import { taskButtons } from "./buttons.js";
+import { individualtasks, taskButtons } from "./buttons.js";
 
 const createCard = (function (next) {
     const holder = document.querySelector(".holder");
@@ -41,7 +41,7 @@ const createCard = (function (next) {
 
 });
 
-const projectLoop = (function(id) {
+const projectLoop = (function() {
     for (let i=0; i<myProjects.length; i++) {
         createCard(myProjects[i]);
     }
@@ -103,7 +103,7 @@ const enlarge = (function(i, id) {
     taskbutton.textContent = "Submit"
     form.appendChild(taskbutton);
 
-    taskButtons(i);
+    taskButtons(i, id);
 
     populateTasks(i);
 });
@@ -114,19 +114,20 @@ const populateTasks = (function(i) {
     } else { 
         const todoholder = document.querySelector(".todoholder");
         for (let x=0; x<myProjects[i].tasks.length; x++) {
+        let id = myProjects[i].tasks[x].taskId
         
         const list = document.createElement("div");
-        list.classList.add(myProjects[i].tasks[x].taskPrio);
+        list.classList.add(myProjects[i].tasks[x].taskPrio, myProjects[i].tasks[x].taskId);
         list.setAttribute("id", "tasks");
         todoholder.appendChild(list);
 
         const taskDate = document.createElement("div");
-        taskDate.classList.add("taskdate");
+        taskDate.classList.add("taskdate", myProjects[i].tasks[x].taskId);
         taskDate.textContent = "Due Date: " + myProjects[i].tasks[x].taskDue;
         list.appendChild(taskDate);
 
         const description = document.createElement("div");
-        description.classList.add("task");
+        description.classList.add("task", myProjects[i].tasks[x].taskId);
         description.textContent = myProjects[i].tasks[x].taskDes;
         list.appendChild(description);
 
@@ -136,18 +137,23 @@ const populateTasks = (function(i) {
 
         const edit = document.createElement("button");
         edit.textContent = "Edit Task";
-        edit.classList.add("tasksb");
+        edit.classList.add("tasksb", "edit");
+        edit.setAttribute("id", myProjects[i].tasks[x].taskId)
         buttons.appendChild(edit);
 
         const complete = document.createElement("button");
         complete.textContent = "Complete Task";
-        complete.classList.add("tasksb");
+        complete.classList.add("tasksb", "complete");
+        complete.setAttribute("id", myProjects[i].tasks[x].taskId)
         buttons.appendChild(complete);
 
         const deletetask = document.createElement("button");
         deletetask.textContent = "Delete Task";
-        deletetask.classList.add("tasksb");
+        deletetask.classList.add("tasksb", "delete");
+        deletetask.setAttribute("id", myProjects[i].tasks[x].taskId)
         buttons.appendChild(deletetask);
+
+        individualtasks(id);
     }};
 });
 
@@ -155,17 +161,17 @@ const singleTask = (function(i) {
         const todoholder = document.querySelector(".todoholder");
 
         const list = document.createElement("div");
-        list.classList.add(myProjects[i].tasks[(myProjects[i].tasks.length - 1)].taskPrio);
+        list.classList.add(myProjects[i].tasks[(myProjects[i].tasks.length - 1)].taskPrio, myProjects[i].tasks[(myProjects[i].tasks.length - 1)].taskId);
         list.setAttribute("id", "tasks");
         todoholder.appendChild(list);
 
         const taskDate = document.createElement("div");
-        taskDate.classList.add("taskdate");
+        taskDate.classList.add("taskdate", myProjects[i].tasks[(myProjects[i].tasks.length - 1)].taskId);
         taskDate.textContent = "Due Date: " + myProjects[i].tasks[(myProjects[i].tasks.length - 1)].taskDue;
         list.appendChild(taskDate);
 
         const description = document.createElement("div");
-        description.classList.add("task");
+        description.classList.add("task", myProjects[i].tasks[(myProjects[i].tasks.length - 1)].taskId);
         description.textContent = myProjects[i].tasks[(myProjects[i].tasks.length - 1)].taskDes;
         list.appendChild(description);
 
@@ -175,17 +181,20 @@ const singleTask = (function(i) {
 
         const edit = document.createElement("button");
         edit.textContent = "Edit Task";
-        edit.classList.add("tasksb");
+        edit.classList.add("tasksb", "edit");
+        edit.setAttribute("id", myProjects[i].tasks[(myProjects[i].tasks.length - 1)].taskId)
         buttons.appendChild(edit);
 
         const complete = document.createElement("button");
         complete.textContent = "Complete Task";
-        complete.classList.add("tasksb");
+        complete.classList.add("tasksb", "complete");
+        complete.setAttribute("id", myProjects[i].tasks[(myProjects[i].tasks.length - 1)].taskId)
         buttons.appendChild(complete);
 
         const deletetask = document.createElement("button");
         deletetask.textContent = "Delete Task";
-        deletetask.classList.add("tasksb");
+        deletetask.classList.add("tasksb", "delete");
+        deletetask.setAttribute("id", myProjects[i].tasks[(myProjects[i].tasks.length - 1)].taskId)
         buttons.appendChild(deletetask);
 });
 
