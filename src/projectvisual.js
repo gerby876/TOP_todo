@@ -1,5 +1,5 @@
 import { myProjects } from "./index.js";
-import { addTask, goback } from "./buttons.js";
+import { taskButtons } from "./buttons.js";
 
 const createCard = (function (next) {
     const holder = document.querySelector(".holder");
@@ -103,11 +103,9 @@ const enlarge = (function(i, id) {
     taskbutton.textContent = "Submit"
     form.appendChild(taskbutton);
 
-    addTask(i);
+    taskButtons(i);
 
     populateTasks(i);
-
-    goback()
 });
 
 const populateTasks = (function(i) {
