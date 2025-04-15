@@ -1,9 +1,12 @@
 import {project, task} from "./constructors.js"
-import {myProjects} from "./index.js";
+import {myProjects, projectsPage} from "./index.js";
 import {createCard, singleTask} from "./projectvisual.js";
 
 const addproject = (function() {
-    document.querySelector(".projectform").showModal();
+    const addp = document.querySelector(".addp");
+    addp.addEventListener("click", () => {
+        document.querySelector(".projectform").showModal();
+    });
 });
 
 const closeout = (function() {
@@ -25,14 +28,9 @@ const closeoutTask = (function() {
 });
 
 const buttonClick = (function() {
-    const button = document.querySelector(".addp");
     const close = document.querySelector(".close");
     const submit = document.querySelector(".submit");
     const closetask = document.querySelector(".closeTask")
-
-    button.addEventListener("click", () => {
-        addproject();
-    });
     
     close.addEventListener("click", () => {
         closeout();
@@ -55,9 +53,8 @@ const addTask = (function(i) {
         document.querySelector(".taskForm").showModal(i);
     });
     const submit = document.querySelector(".submitTask");
-    submit.addEventListener("click", () => {
-        submitTask(i)
-    });
+    submit.addEventListener("click", () =>
+        submitTask(i));
 });
 
 const submitTask = (function(i) {
@@ -67,5 +64,16 @@ const submitTask = (function(i) {
     closeoutTask();
 });
 
+const goback = (function() {
+    const backbutton = document.getElementById("back");
+    backbutton.addEventListener("click", () => {
+        document.querySelector(".taskb").remove();
+        document.querySelector(".todoholder").remove();
+        document.querySelector(".submitTask").remove()
+        projectsPage();
+    });
+});
 
-export {buttonClick, addTask, submitTask}
+
+
+export {buttonClick, addTask, goback, addproject}

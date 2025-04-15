@@ -1,5 +1,5 @@
 import "./style.css"
-import {buttonClick} from "./buttons.js"
+import {buttonClick, addproject} from "./buttons.js"
 import {project} from "./constructors.js"
 import {projectLoop} from "./projectvisual.js";
 
@@ -68,11 +68,29 @@ const firstLoad = (function() {
 
     projectLoop();
     buttonClick();
+    addproject();
 })();
 
 const projectsPage = (function() {
+    const top = document.querySelector(".top");
+    const body = document.querySelector("body");
+
+    const headtitle = document.querySelector(".headtitle");
+    headtitle.textContent = "My Projects";
+    top.appendChild(headtitle);
+
+    const addp = document.createElement("button");
+    addp.classList.add("addp");
+    addp.textContent = "Add Projects";
+    top.appendChild(addp);
+
+    const holder = document.createElement("div");
+    holder.classList.add("holder");
+    body.appendChild(holder);
+
+    addproject();
     projectLoop();
 });
 
 
-export {myProjects}
+export {myProjects, projectsPage}

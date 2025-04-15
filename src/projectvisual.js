@@ -1,5 +1,5 @@
 import { myProjects } from "./index.js";
-import { addTask, submitTask } from "./buttons.js";
+import { addTask, goback } from "./buttons.js";
 
 const createCard = (function (next) {
     const holder = document.querySelector(".holder");
@@ -47,14 +47,11 @@ const projectLoop = (function(id) {
     }
 });
 
-
-
-
 const enlargeCard = (function(id) {
     for (let i=0; i<myProjects.length; i++) {
         if (myProjects[i].id == id) {
             removeProject();
-            enlarge(i);
+            enlarge(i, id);
         };
     };
 });
@@ -66,7 +63,7 @@ const removeProject = (function() {
     holder.remove();
 });
 
-const enlarge = (function(i) {
+const enlarge = (function(i, id) {
     const top = document.querySelector(".top");
     const headtitle = document.querySelector(".headtitle");
     headtitle.textContent = myProjects[i].title;
@@ -100,9 +97,17 @@ const enlarge = (function(i) {
     todoholder.classList.add("todoholder");
     body.appendChild(todoholder);
 
+    const form = document.getElementById("taskform");
+    const taskbutton = document.createElement("button");
+    taskbutton.classList.add("submitTask");
+    taskbutton.textContent = "Submit"
+    form.appendChild(taskbutton);
+
     addTask(i);
 
     populateTasks(i);
+
+    goback()
 });
 
 const populateTasks = (function(i) {
