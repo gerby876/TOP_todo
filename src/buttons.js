@@ -115,6 +115,13 @@ const edittask = (function(i, editid, list, description, taskDate){
         list.className = document.getElementById("editprio").value;
         description.textContent = document.getElementById("editdesc").value;
         taskDate.textContent = "Due Date: " + document.getElementById("editdue").value;
+        for (let x=0; x<myProjects[i].tasks.length; x++) {
+            if (myProjects[i].tasks[x].taskId == editid) {
+                myProjects[i].tasks[x].taskDes = document.getElementById("editdesc").value;;
+                myProjects[i].tasks[x].taskPrio = document.getElementById("editprio").value;;
+                myProjects[i].tasks[x].taskDue = document.getElementById("editdue").value;
+            };
+        };
         document.querySelector(".editform").close()
         editbutton.remove()
     });

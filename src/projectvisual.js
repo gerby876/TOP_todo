@@ -193,6 +193,9 @@ const singleTask = (function(i) {
         deletetask.textContent = "Delete Task";
         deletetask.classList.add("tasksb", "delete");
         buttons.appendChild(deletetask);
+
+        let id = myProjects[i].tasks[(myProjects[i].tasks.length - 1)].taskId;
+        individualtasks(list, taskDate, description, edit, complete, deletetask, id, i)
 });
 
 const edittaskvisual = (function() {
