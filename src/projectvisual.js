@@ -1,5 +1,5 @@
 import { myProjects } from "./index.js";
-import { individualtasks, taskButtons } from "./buttons.js";
+import { taskButtons, individualtasks } from "./buttons.js";
 
 const createCard = (function (next) {
     const holder = document.querySelector(".holder");
@@ -18,7 +18,7 @@ const createCard = (function (next) {
     
     holder.appendChild(card);
     
-    const id = next.id;
+    let id = next.id;
     card.classList.add
     card.addEventListener("click", () => {
         enlargeCard(id);
@@ -114,20 +114,21 @@ const populateTasks = (function(i) {
     } else { 
         const todoholder = document.querySelector(".todoholder");
         for (let x=0; x<myProjects[i].tasks.length; x++) {
-        let id = myProjects[i].tasks[x].taskId
         
+        let id = myProjects[i].tasks[x].taskId;
+
         const list = document.createElement("div");
         list.classList.add(myProjects[i].tasks[x].taskPrio, myProjects[i].tasks[x].taskId);
         list.setAttribute("id", "tasks");
         todoholder.appendChild(list);
 
         const taskDate = document.createElement("div");
-        taskDate.classList.add("taskdate", myProjects[i].tasks[x].taskId);
+        taskDate.classList.add("taskdate");
         taskDate.textContent = "Due Date: " + myProjects[i].tasks[x].taskDue;
         list.appendChild(taskDate);
 
         const description = document.createElement("div");
-        description.classList.add("task", myProjects[i].tasks[x].taskId);
+        description.classList.add("task");
         description.textContent = myProjects[i].tasks[x].taskDes;
         list.appendChild(description);
 
@@ -137,24 +138,23 @@ const populateTasks = (function(i) {
 
         const edit = document.createElement("button");
         edit.textContent = "Edit Task";
-        edit.classList.add("tasksb", "edit");
-        edit.setAttribute("id", myProjects[i].tasks[x].taskId)
+        edit.classList.add("tasksb", `edit`);
         buttons.appendChild(edit);
 
         const complete = document.createElement("button");
         complete.textContent = "Complete Task";
-        complete.classList.add("tasksb", "complete");
-        complete.setAttribute("id", myProjects[i].tasks[x].taskId)
+        complete.classList.add("tasksb", `complete`);
         buttons.appendChild(complete);
 
         const deletetask = document.createElement("button");
         deletetask.textContent = "Delete Task";
-        deletetask.classList.add("tasksb", "delete");
-        deletetask.setAttribute("id", myProjects[i].tasks[x].taskId)
+        deletetask.classList.add("tasksb", `delete`);
         buttons.appendChild(deletetask);
 
-        individualtasks(id);
+        individualtasks(list, taskDate, description, edit, complete, deletetask, id, i)
+
     }};
+    
 });
 
 const singleTask = (function(i) {
@@ -166,12 +166,12 @@ const singleTask = (function(i) {
         todoholder.appendChild(list);
 
         const taskDate = document.createElement("div");
-        taskDate.classList.add("taskdate", myProjects[i].tasks[(myProjects[i].tasks.length - 1)].taskId);
+        taskDate.classList.add("taskdate");
         taskDate.textContent = "Due Date: " + myProjects[i].tasks[(myProjects[i].tasks.length - 1)].taskDue;
         list.appendChild(taskDate);
 
         const description = document.createElement("div");
-        description.classList.add("task", myProjects[i].tasks[(myProjects[i].tasks.length - 1)].taskId);
+        description.classList.add("task");
         description.textContent = myProjects[i].tasks[(myProjects[i].tasks.length - 1)].taskDes;
         list.appendChild(description);
 
@@ -182,21 +182,22 @@ const singleTask = (function(i) {
         const edit = document.createElement("button");
         edit.textContent = "Edit Task";
         edit.classList.add("tasksb", "edit");
-        edit.setAttribute("id", myProjects[i].tasks[(myProjects[i].tasks.length - 1)].taskId)
         buttons.appendChild(edit);
 
         const complete = document.createElement("button");
         complete.textContent = "Complete Task";
-        complete.classList.add("tasksb", "complete");
-        complete.setAttribute("id", myProjects[i].tasks[(myProjects[i].tasks.length - 1)].taskId)
+        complete.classList.add("tasksb", "complete")
         buttons.appendChild(complete);
 
         const deletetask = document.createElement("button");
         deletetask.textContent = "Delete Task";
         deletetask.classList.add("tasksb", "delete");
-        deletetask.setAttribute("id", myProjects[i].tasks[(myProjects[i].tasks.length - 1)].taskId)
         buttons.appendChild(deletetask);
 });
 
+const edittaskvisual = (function() {
 
-export {createCard, projectLoop, singleTask};
+});
+
+
+export {createCard, projectLoop, singleTask, edittaskvisual};

@@ -66,5 +66,19 @@
             </div>
         </form>
     </dialog>
+
+    <dialog class="editform">
+        <form id="editform" onsubmit=event.preventDefault()>
+            <button class="editcloseTask"> X </button>
+            <div>Description: <input id="editdesc" type="text"></div>
+            <div>Due Date: <input id="editdue" type="date"></div>
+            <div>Priority: 
+                <select id="editprio">
+                    <option value="low"> Low </option>
+                    <option value="mid"> Medium </option>
+                    <option value="high"> High </option>
+                </select>
+            </div>
+        </form>
 </body>
 </html>

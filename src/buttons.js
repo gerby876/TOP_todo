@@ -1,6 +1,6 @@
 import {project, task} from "./constructors.js"
 import {myProjects, projectsPage} from "./index.js";
-import {createCard, singleTask} from "./projectvisual.js";
+import {createCard, singleTask, edittaskvisual} from "./projectvisual.js";
 
 const addproject = (function() {
     const addp = document.querySelector(".addp");
@@ -47,21 +47,12 @@ const buttonClick = (function() {
     
 });
 
-const submitTask = (function(i, id) {
-    for (let x=0; x<myProjects[i].tasks.length; x++) {
-        if (id === myProjects[i].tasks[x].taskId) {
-            console.log(2)
-        } else {
-            const newTask = new task(document.getElementById("taskdesc").value, document.getElementById("taskdue").value, document.getElementById("taskprio").value);
-            myProjects[i].tasks.push(newTask);
-            singleTask(i);
-            closeoutTask();
-        };
-    };
-    const newTask = new task(document.getElementById("taskdesc").value, document.getElementById("taskdue").value, document.getElementById("taskprio").value);
-    myProjects[i].tasks.push(newTask);
-    singleTask(i);
-    closeoutTask();
+const submitTask = (function(i) {
+        const newTask = new task(document.getElementById("taskdesc").value, document.getElementById("taskdue").value, document.getElementById("taskprio").value);
+        myProjects[i].tasks.push(newTask);
+        singleTask(i);
+        closeoutTask();
+
 });
 
 const goback = (function() {
@@ -76,7 +67,8 @@ const deleteb = (function(i) {
     goback()
 });
 
-const addTask = (function() {
+const addTask = (function(id) {
+    document.querySelector(".taskForm").id = id
     document.querySelector(".taskForm").showModal();
 });
 
@@ -93,37 +85,83 @@ const taskButtons = (function(i, id) {
 
     const addt = document.getElementById("addt");
     addt.addEventListener("click", () => {
-        addTask();
+        addTask(id);
     });
 
     const submit = document.querySelector(".submitTask");
     submit.addEventListener("click", () => {
-        console.log(1)
-        submitTask(i, id)});
-    
+        submitTask(i, id);
+    });
 });
 
-const edittask = (function() {
-    
-});
+const edittask = (function(i, editid, list, description, taskDate){
+    document.querySelector(".editform").showModal();
 
-const individualtasks = (function(id) {
-    const edit =document.querySelector(".edit");
-    const complete = document.getElementById(id).getElementsByClassName("complete");
-    const deletet = document.getElementById(id).getElementsByClassName("delete");
+    const editform = document.getElementById("editform");
+    const editbutton = document.createElement("button");
+    editbutton.classList.add("editTask");
+    editbutton.textContent = "Submit";
+    editform.appendChild(editbutton);
 
-    edit.addEventListener("click", () => {
-        document.querySelector(".taskForm").showModal();
-        console.log(1)
+    for (let x=0; x<myProjects[i].tasks.length; x++) {
+        if (myProjects[i].tasks[x].taskId == editid) {
+            document.getElementById("editdesc").value = myProjects[i].tasks[x].taskDes;
+            document.getElementById("editprio").value = myProjects[i].tasks[x].taskPrio;
+            document.getElementById("editdue").value = myProjects[i].tasks[x].taskDue;
+        };
+    };
+
+    editbutton.addEventListener("click", () => {
+        list.className = document.getElementById("editprio").value;
+        description.textContent = document.getElementById("editdesc").value;
+        taskDate.textContent = "Due Date: " + document.getElementById("editdue").value;
+        document.querySelector(".editform").close()
+        editbutton.remove()
     });
 
-    // complete.addEventListener("click", () => {
+    const editcloseTask = document.querySelector(".editcloseTask");
+    editcloseTask.addEventListener("click", () => {
+        document.querySelector(".editform").close()
+        editbutton.remove()
+    });
 
-    // });
 
-    // deletet.addEventListener("click", () => {
+});
 
-    // });
+const completetask = (function(taskDate, description) {
+    if (taskDate.style.textDecoration !== "line-through") {
+        taskDate.style.textDecoration = "line-through";
+        description.style.textDecoration = "line-through";
+        } else {
+            taskDate.style.textDecoration = "none"
+            description.style.textDecoration = "none";
+        };
+});
+
+const removetask = (function(list, id, i) {
+    for (let x=0; x<myProjects[i].tasks.length; x++) {
+        if (myProjects[i].tasks[x].taskId == id) {
+            myProjects[i].tasks.splice(x, 1);
+            break;
+        }
+    }
+    list.remove();
+});
+
+const individualtasks = (function(list, taskDate, description, edit, complete, deletetask, id, i) {
+    
+
+    edit.addEventListener("click", () => {
+        const editid = id
+        edittask(i, editid, list, description, taskDate)
+    });
+    complete.addEventListener("click", () => {
+        completetask(taskDate, description)
+    });
+
+    deletetask.addEventListener("click", () => {
+        removetask(list, id, i);
+    });
 });
 
 
