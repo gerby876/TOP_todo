@@ -7,10 +7,11 @@ class project { constructor(title, description, dueDate, priority) {
     this.id = crypto.randomUUID();
 }};
 
-class task { constructor(description, dueDate, priority) {
+class task { constructor(description, dueDate, priority, complete) {
     this.taskDes = description;
     this.taskDue = dueDate;
     this.taskPrio = priority;
+    this.complete = complete;
     this.taskId = crypto.randomUUID();
 }};
 

@@ -157,6 +157,11 @@ const populateTasks = (function(i) {
         deletetask.classList.add("tasksb", `delete`);
         buttons.appendChild(deletetask);
 
+        if (myProjects[i].tasks[x].complete == "yes" && !taskDate.classList.contains("line-through")) {
+            taskDate.classList.add("line-through");
+            description.classList.add("line-through");
+        }
+
         individualtasks(list, taskDate, description, edit, complete, deletetask, id, i)
 
     }};

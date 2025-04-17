@@ -271,3 +271,7 @@ textarea{
     text-overflow: break-word;
     overflow: auto;
 }
+
+.line-through{
+    text-decoration: line-through;
+}

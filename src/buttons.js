@@ -1,6 +1,7 @@
 import {project, task} from "./constructors.js"
 import {myProjects, projectsPage} from "./index.js";
-import {createCard, singleTask, edittaskvisual} from "./projectvisual.js";
+import {createCard, singleTask} from "./projectvisual.js";
+import {updateStorage} from "./local.js"
 
 const addproject = (function() {
     const addp = document.querySelector(".addp");
@@ -25,6 +26,7 @@ const submitproject = (function() {
     const next = new project(document.getElementById("projecttitle").value, document.getElementById("projectdesc").value, document.getElementById("projectdue").value, document.getElementById("projectprio").value);
     myProjects.push(next);
     createCard(next);
+    updateStorage();
     document.getElementById("projectform").reset();
     
 });
@@ -56,8 +58,9 @@ const buttonClick = (function() {
 });
 
 const submitTask = (function(i) {
-        const newTask = new task(document.getElementById("taskdesc").value, document.getElementById("taskdue").value, document.getElementById("taskprio").value);
+        const newTask = new task(document.getElementById("taskdesc").value, document.getElementById("taskdue").value, document.getElementById("taskprio").value, "no");
         myProjects[i].tasks.push(newTask);
+        updateStorage();
         singleTask(i);
         closeoutTask();
 
@@ -72,7 +75,8 @@ const goback = (function() {
 
 const deleteb = (function(i) {
     myProjects.splice(i, 1);
-    goback()
+    updateStorage();
+    goback();
 });
 
 const addTask = (function(id) {
@@ -155,6 +159,7 @@ const edittask = (function(i, editid, list, description, taskDate){
         document.querySelector(".editdesc").style = "";
         document.querySelector(".editform").close();
         editbutton.remove();
+        updateStorage();
     });
 
     const editcloseTask = document.querySelector(".editcloseTask");
@@ -168,14 +173,21 @@ const edittask = (function(i, editid, list, description, taskDate){
 
 });
 
-const completetask = (function(taskDate, description) {
-    if (taskDate.style.textDecoration !== "line-through") {
-        taskDate.style.textDecoration = "line-through";
-        description.style.textDecoration = "line-through";
-        } else {
-            taskDate.style.textDecoration = "none"
-            description.style.textDecoration = "none";
+const completetask = (function(taskDate, description, i, id) {
+    for (let x=0; x<myProjects[i].tasks.length; x++) {
+        if (myProjects[i].tasks[x].taskId == id && myProjects[i].tasks[x].complete == "no") {
+            myProjects[i].tasks[x].complete = "yes";
+            taskDate.classList.add("line-through");
+            description.classList.add("line-through");
+            break;
+        } else if (myProjects[i].tasks[x].taskId == id && myProjects[i].tasks[x].complete == "yes") {
+            myProjects[i].tasks[x].complete = "no";
+            taskDate.classList.remove("line-through");
+            description.classList.remove("line-through");
+            break;
         };
+    };
+    updateStorage();
 });
 
 const removetask = (function(list, id, i) {
@@ -186,17 +198,17 @@ const removetask = (function(list, id, i) {
         }
     }
     list.remove();
+    updateStorage();
 });
 
-const individualtasks = (function(list, taskDate, description, edit, complete, deletetask, id, i) {
-    
+const individualtasks = (function(list, taskDate, description, edit, complete, deletetask, id, i) { 
 
     edit.addEventListener("click", () => {
         const editid = id
         edittask(i, editid, list, description, taskDate)
     });
     complete.addEventListener("click", () => {
-        completetask(taskDate, description)
+        completetask(taskDate, description, i, id)
     });
 
     deletetask.addEventListener("click", () => {
