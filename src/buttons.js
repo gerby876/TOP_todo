@@ -6,12 +6,19 @@ const addproject = (function() {
     const addp = document.querySelector(".addp");
     addp.addEventListener("click", () => {
         document.querySelector(".projectform").showModal();
+        document.querySelector(".projectform").addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                document.querySelector(".desc").style = "";
+            }
+        }, {open:true}
+    );
     });
 });
 
 const closeout = (function() {
     document.getElementById("projectform").reset();
     document.querySelector("dialog").close();
+    document.querySelector(".desc").style = ""
 });
 
 const submitproject = (function() {
@@ -23,6 +30,7 @@ const submitproject = (function() {
 });
 
 const closeoutTask = (function() {
+    document.querySelector(".taskdesc").style = ""
     document.getElementById("taskform").reset();
     document.querySelector(".taskForm").close();
 });
@@ -70,7 +78,17 @@ const deleteb = (function(i) {
 const addTask = (function(id) {
     document.querySelector(".taskForm").id = id
     document.querySelector(".taskForm").showModal();
+    document.querySelector(".taskForm").addEventListener("keydown", taskescape)
+
 });
+
+const taskescape = (function(event) {
+    if (event.key === "Escape") {
+        document.querySelector(".taskdesc").style = ""
+        document.getElementById("taskform").reset();
+        document.querySelector(".taskForm").close();
+    }
+})
 
 const taskButtons = (function(i, id) {
     const backbutton = document.getElementById("back");
@@ -80,7 +98,7 @@ const taskButtons = (function(i, id) {
 
     const deletebutton = document.getElementById("deletep");
     deletebutton.addEventListener("click", () => {
-        deleteb();
+        deleteb(i);
     });
 
     const addt = document.getElementById("addt");
@@ -97,13 +115,16 @@ const taskButtons = (function(i, id) {
 const edittask = (function(i, editid, list, description, taskDate){
     document.querySelector(".editform").showModal();
 
-    document.querySelector(".editform").addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
+    const escapeKey = (function(event) {
+        if (event.key === "Escape") {            
             document.querySelector(".editTask").remove();
-        }
-    }, 
-    {once:true}
-);
+            document.querySelector(".editdesc").style = "";
+            document.querySelector(".editform").removeEventListener("keydown", escapeKey);
+        };
+    });
+
+    document.querySelector(".editform").addEventListener("keydown", escapeKey);
+
 
     const editform = document.getElementById("editform");
     const editbutton = document.createElement("button");
@@ -130,14 +151,18 @@ const edittask = (function(i, editid, list, description, taskDate){
                 myProjects[i].tasks[x].taskDue = document.getElementById("editdue").value;
             };
         };
-        document.querySelector(".editform").close()
-        editbutton.remove()
+        document.querySelector(".editform").removeEventListener("keydown", escapeKey);
+        document.querySelector(".editdesc").style = "";
+        document.querySelector(".editform").close();
+        editbutton.remove();
     });
 
     const editcloseTask = document.querySelector(".editcloseTask");
     editcloseTask.addEventListener("click", () => {
-        document.querySelector(".editform").close()
-        editbutton.remove()
+        document.querySelector(".editform").removeEventListener("keydown", escapeKey);
+        document.querySelector(".editdesc").style = "";
+        document.querySelector(".editform").close();
+        editbutton.remove();
     });
 
 

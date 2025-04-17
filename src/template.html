@@ -6,42 +6,17 @@
     <title>To Do</title>
 </head>
 <body>
-    <!-- <div class="todoholder">
-        <div class="low" id="tasks">
-            <div class="taskdate">Due Date: xxxx/xx/xx</div>
-            <div class="task">Task</div>
-            <div class="taskbuttons">
-                <button class="tasksb">Edit task</button>
-                <button class="tasksb">Complete task</button>
-                <button class="tasksb">Delete Task</button>
-            </div>
-        </div>
-        <div class="mid" id="tasks">
-            <div class="taskdate">Due Date: xxxx/xx/xx</div>
-            <div class="task">Task</div>
-            <div class="taskbuttons">
-                <button class="tasksb">Edit task</button>
-                <button class="tasksb">Complete task</button>
-                <button class="tasksb">Delete Task</button>
-            </div>
-        </div>
-        <div class="high" id="tasks">
-            <div class="taskdate">Due Date: xxxx/xx/xx</div>
-            <div class="task">Task</div>
-            <div class="taskbuttons">
-                <button class="tasksb">Edit task</button>
-                <button class="tasksb">Complete task</button>
-                <button class="tasksb">Delete Task</button>
-            </div>
-        </div>
-    </div> -->
     <dialog class="projectform">
         <form id="projectform" onsubmit=event.preventDefault()>
             <button class="close"> X </button>
-            <div>Title: <input id="projecttitle" type="text"></div>
-            <div>Description: <input id="projectdesc" type="text"></div>
-            <div>Due Date: <input id="projectdue" type="date"></div>
-            <div>Priority: 
+            <div>Title: </div>
+            <div><input id="projecttitle" type="text"></div>
+            <div>Description: </div>
+            <div><textarea class="desc" id="projectdesc" type="text"></textarea></div>
+            <div>Due Date: </div>
+            <div><input id="projectdue" type="date"></div>
+            <div>Priority:  </div>
+            <div>
                 <select id="projectprio">
                     <option value="low"> Low </option>
                     <option value="mid"> Medium </option>
@@ -55,9 +30,18 @@
     <dialog class="taskForm">
         <form id="taskform" onsubmit=event.preventDefault()>
             <button class="closeTask"> X </button>
-            <div>Description: <input id="taskdesc" type="text"></div>
-            <div>Due Date: <input id="taskdue" type="date"></div>
-            <div>Priority: 
+            <div>Description: </div>
+            <div><textarea class="taskdesc" id="taskdesc" type="text"></textarea></div>
+            <div>
+                Due Date: 
+            </div>
+            <div>
+                <input id="taskdue" type="date">
+            </div>
+            <div>
+                Priority: 
+            </div>
+            <div>
                 <select id="taskprio">
                     <option value="low"> Low </option>
                     <option value="mid"> Medium </option>
@@ -70,9 +54,12 @@
     <dialog class="editform">
         <form id="editform" onsubmit=event.preventDefault()>
             <button class="editcloseTask"> X </button>
-            <div>Description: <input id="editdesc" type="text"></div>
-            <div>Due Date: <input id="editdue" type="date"></div>
-            <div>Priority: 
+            <div>Description: </div>
+            <div><textarea class="editdesc" id="editdesc" type="text"></textarea></div>
+            <div>Due Date: </div>
+            <div><input id="editdue" type="date"></div>
+            <div>Priority: </div>
+            <div>
                 <select id="editprio">
                     <option value="low"> Low </option>
                     <option value="mid"> Medium </option>

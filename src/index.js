@@ -60,11 +60,8 @@ const firstLoad = (function() {
     holder.classList.add("holder");
     body.appendChild(holder);
 
-    const next = new project("Test Project", "Test project description", "1995-08-31", "low");
+    const next = new project("Test Project", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.", "yyyy-mm-dd", "high");
     myProjects.push(next);
-
-    const next1 = new project("Test Project 1", "Test project description", "1995-08-31", "mid");
-    myProjects.push(next1);
 
     projectLoop();
     buttonClick();

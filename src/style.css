@@ -1,3 +1,7 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 body{
     margin: 0px;
     width: 100%;
@@ -95,10 +99,11 @@ button:hover{
     position: sticky;
     top: 0;
     background-color: #709ab3;
-    width: 100%;
+    width: 95%;
     height: 1.4em;
     border-bottom: solid;
     display: flex;
+    padding-left: .5em;
 }
 
 .date{
@@ -163,4 +168,106 @@ button:hover{
     width: 100%;
     display: flex;
     justify-content: space-around;
+}
+
+.projectDescription {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    overflow-wrap: break-word;
+    margin: 1em;
+}
+
+dialog {
+    width: 30em;
+    height: 12em;
+    padding: .5em;
+}
+
+#projectform{
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: 1fr 1fr 3fr 1fr 1fr 1fr;
+    row-gap: .25em;
+}
+
+.submit {
+    width: 5em;
+    justify-self: end;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.close {
+    width: 2em;
+    justify-self: end;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.desc{
+    width: 100%;
+    height: 100%;
+    text-overflow: break-word;
+    overflow: auto;
+}
+
+#taskform{
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: 1fr 4fr 1fr 1fr 1fr;
+    row-gap: .25em;
+}
+
+.closeTask {
+    width: 2em;
+    justify-self: end;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.submitTask {
+    width: 5em;
+    justify-self: end;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.taskdesc{
+    width: 100%;
+    height: 100%;
+    text-overflow: break-word;
+    overflow: auto;
+}
+
+textarea{
+    padding: 0px;
+}
+
+#editform{
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: 1fr 4fr 1fr 1fr 1fr;
+    row-gap: .25em;
+}
+
+.editcloseTask {
+    width: 2em;
+    justify-self: end;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.editTask {
+    width: 5em;
+    justify-self: end;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.editdesc{
+    width: 100%;
+    height: 100%;
+    text-overflow: break-word;
+    overflow: auto;
 }

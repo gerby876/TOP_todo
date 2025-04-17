@@ -19,7 +19,7 @@ const createCard = (function (next) {
     holder.appendChild(card);
     
     let id = next.id;
-    card.classList.add
+
     card.addEventListener("click", () => {
         enlargeCard(id);
     });
@@ -33,11 +33,17 @@ const createCard = (function (next) {
     date.classList.add("date");
     const datetext = document.createElement("div");
     datetext.textContent = "Due Date:"
+    
     const dateday = document.createElement("div");
     dateday.textContent = next.dueDate;
     date.appendChild(datetext);
     date.appendChild(dateday);
     title.appendChild(date);
+
+    const des = document.createElement("div");
+    des.textContent = next.description
+    des.classList.add("projectDescription")
+    card.appendChild(des);
 
 });
 
