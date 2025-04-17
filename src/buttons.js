@@ -97,6 +97,14 @@ const taskButtons = (function(i, id) {
 const edittask = (function(i, editid, list, description, taskDate){
     document.querySelector(".editform").showModal();
 
+    document.querySelector(".editform").addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            document.querySelector(".editTask").remove();
+        }
+    }, 
+    {once:true}
+);
+
     const editform = document.getElementById("editform");
     const editbutton = document.createElement("button");
     editbutton.classList.add("editTask");
